@@ -1,0 +1,24 @@
+<table class="table container">
+    <thead>
+        <th>Model</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Quantity</th>
+        <th>Buy</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let celular of celulares | async" [ngClass]="{'discount': celular.discount}">
+            <td>{{celular.model}}</td>
+            <td>{{celular.brand}}</td>
+            <td>{{celular.price | currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{celular.stock}}</td>
+            <td>
+                <app-numeric-input *ngIf="celular.stock > 0" [(quantity)]="celular.quantity" [max]="celular.stock"></app-numeric-input>
+            </td>
+            <td>
+                <button *ngIf="celular.stock > 0" class="btn btn-success" (click)="addToCart(celular)">Comprar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

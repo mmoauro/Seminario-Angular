@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let celular of cartList$ | async">
+        {{celular.model}} - {{celular.quantity}}
+    </li>
+</ul>
